@@ -2,7 +2,7 @@ import turtle
 import math
 import time
 
-degree = 0.1
+degree = 15
 tri = 500
 hi = []
 bi = []
@@ -15,13 +15,14 @@ turtle.begin_fill()
 turtle.penup()
 turtle.goto(-250,250)
 turtle.pendown()
+turtle.hideturtle()
 
 for i in range(4):
 	turtle.forward(tri)
 	turtle.right(90)	
 turtle.end_fill()
 
-for i in range(100000) :
+for i in range(20) :
 	if i < 3:
 		if i == 0:
 			b = tri
