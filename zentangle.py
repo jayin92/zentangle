@@ -2,8 +2,9 @@ import turtle
 import math
 import time
 
-degree = 15
-tri = 500
+degree = 15 #你可以在這更改角度
+tri = 500 #你可以在這更改正方形的邊長
+
 hi = []
 bi = []
 ai = []
@@ -13,7 +14,7 @@ turtle.color('black','white')
 turtle.pensize(0.5)
 turtle.begin_fill()
 turtle.penup()
-turtle.goto(-250,250)
+turtle.goto(-(tri / 2),(tri / 2))
 turtle.pendown()
 turtle.hideturtle()
 
@@ -32,6 +33,7 @@ for i in range(20) :
 		h = b / math.cos(math.radians(degree))		 
 		a = math.tan(math.radians(degree)) * b			
 		turtle.forward(h)
+		print("The value of i now is ",i)
 		hi.append(h)
 		bi.append(b)
 		ai.append(a)				 
@@ -45,7 +47,8 @@ for i in range(20) :
 		turtle.right(degree)
 		a = math.sin(math.radians(degree)) * h
 		b = math.cos(math.radians(degree)) * h
-		turtle.forward(b)		
+		turtle.forward(b)
+		print("The value of i now is ",i)
 		hi.append(h)
 		bi.append(b)
 		ai.append(a)  
@@ -56,13 +59,12 @@ for i in range(20) :
 		h = b / math.cos(math.radians(degree))
 		a = math.tan(math.radians(degree)) * b
 		turtle.forward(h)
+		print("The value of i now is ",i)
 		hi.append(h)
 		bi.append(b)
 		ai.append(a)		
 		turtle.right(90)
 		if i > 3 & i % 4 == 2:
 			turtle.left(degree)
-
-	print(i)
-
+			
 turtle.exitonclick()
