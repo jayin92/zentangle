@@ -2,13 +2,16 @@ import turtle
 import math
 import time
 
-degree = 15 #你可以在這更改角度
-tri = 500 #你可以在這更改正方形的邊長
+
 
 hi = []
 bi = []
 ai = []
+area = 0
 
+mode = turtle.numinput("選擇模式", "模式 1 為 無限模式  模式 2 為有限模式", 2, minval = 1, maxval = 2)
+degree = turtle.numinput("選擇角度", "0 < 角度 <= 45", 15, minval = 10 ** -10, maxval = 45)
+tri = turtle.numinput("選擇正方形邊長", "0 < 邊長", 250, minval = 10 ** -10, maxval = 10 ** 10)
 turtle.speed(-1)
 turtle.color('black','white')
 turtle.pensize(0.5)
@@ -23,7 +26,9 @@ for i in range(4):
 	turtle.right(90)	
 turtle.end_fill()
 
-for i in range(20) :
+i = 0
+
+while True:	
 	if i < 3:
 		if i == 0:
 			b = tri
@@ -31,7 +36,10 @@ for i in range(20) :
 			b = tri - ai[i-1] 
 		turtle.right(degree)		
 		h = b / math.cos(math.radians(degree))		 
-		a = math.tan(math.radians(degree)) * b			
+		a = math.tan(math.radians(degree)) * b
+		area = (a * b) / 2 + area 
+		if tri * tri - area < 0 and mode == 2:
+			break
 		turtle.forward(h)
 		print("The value of i now is ",i)
 		hi.append(h)
@@ -47,6 +55,9 @@ for i in range(20) :
 		turtle.right(degree)
 		a = math.sin(math.radians(degree)) * h
 		b = math.cos(math.radians(degree)) * h
+		area = (a * b) / 2 + area
+		if tri * tri - area < 0 and mode == 2:
+			break		
 		turtle.forward(b)
 		print("The value of i now is ",i)
 		hi.append(h)
@@ -57,7 +68,10 @@ for i in range(20) :
 	if i > 3 & i % 4 != 3:
 		b = hi[i-4]	- ai[i-1]	
 		h = b / math.cos(math.radians(degree))
-		a = math.tan(math.radians(degree)) * b
+		a = math.tan(math.radians(degree)) * b	
+		area = (a * b) / 2 + area 
+		if tri * tri - area < 0 and mode == 2:
+			break	
 		turtle.forward(h)
 		print("The value of i now is ",i)
 		hi.append(h)
@@ -66,5 +80,6 @@ for i in range(20) :
 		turtle.right(90)
 		if i > 3 & i % 4 == 2:
 			turtle.left(degree)
-			
+	i += 1
+
 turtle.exitonclick()
